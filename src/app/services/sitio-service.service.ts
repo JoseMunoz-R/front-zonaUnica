@@ -8,18 +8,40 @@ const baseURL= environment.baseURL;
   providedIn: 'root'
 })
 export class SitioServiceService {
-  //URL_BASE = environment.baseURL;
+  
   constructor(private http: HttpClient) { }
   get headers(){
-    return { headers:{'Access-Control-Allow-Origin':'*'}}
+    return { headers:{'Authorization': this.getToken()}}
   }
   //Metodo GET
   getSitios(){
-    return this.http.get<Sitio[]>(`${baseURL}sitios`)
+    return this.http.get<Sitio[]>(`${baseURL}sitios`,this.headers);
+  }
+
+  //Metodo GETbyId
+  getSitio(id:any){
+    return this.http.get<Sitio>(`${baseURL}sitios/${id}`, this.headers);
   }
 
   //Metodo POT 
-  saveSitio(data:Sitio){
-    return this.http.post(`${baseURL}sitios`, data);
+  saveSitio(data:any){
+    return this.http.post(`${baseURL}sitios`, data, this.headers);
   }
+
+  //Metodo PUT
+  updateSitio(data:any, id:any){
+    return this.http.put(`${baseURL}sitios/${id}`, data, this.headers);
+  }
+
+  //Metodo DELETE
+  deleteSitio(id: any){
+    return this.http.delete(`${baseURL}sitios/${id}`, this.headers);
+  }
+
+  //VerificarToken
+  getToken(){
+    return localStorage.getItem('hash') || ''
+  }
+
+ 
 }

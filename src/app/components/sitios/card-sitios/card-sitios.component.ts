@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Sitio } from 'src/app/models/sitioModel';
 import { SitioServiceService } from 'src/app/services/sitio-service.service';
 
@@ -9,20 +9,33 @@ import { SitioServiceService } from 'src/app/services/sitio-service.service';
 })
 export class CardSitiosComponent implements OnInit {
 
-  sitios: Sitio[]=[];
+  //sitios: Sitio[]=[];
+  idSitio: Number=0;
+  estado: boolean= false;
+  @Input() sitios: Sitio[]=[];
+  //@Input() inOpenForm: 
+  @Output() idToChange: EventEmitter<String>= new EventEmitter();
+  @Output() onDelete: EventEmitter<Sitio>= new EventEmitter();
+  @Output() onEdit: EventEmitter<Sitio>= new EventEmitter();
 
   constructor(private sitioServ: SitioServiceService) { }
 
+  
   ngOnInit(): void {
-    this.loadSitios();
+    //this.loadSitios();
   }
 
-  async loadSitios(){
-    await this.sitioServ.getSitios().subscribe((sitios: any)=>{
-      this.sitios=sitios;
-      console.log(sitios);
-    });
-    
-
+  ngOnChanges(changes: SimpleChanges){
+    //this.loadSitios();
   }
+
+  editar(sitio:Sitio){
+    this.onEdit.emit(sitio);
+    console.log(sitio)
+  }
+
+  deleteSitio(sitio:Sitio){
+    this.onDelete.emit(sitio);
+  }
+  
 }

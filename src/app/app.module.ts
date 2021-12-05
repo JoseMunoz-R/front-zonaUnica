@@ -14,6 +14,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { FrmSitiosComponent } from './components/sitios/frm-sitios/frm-sitios.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { FrmMunicipioComponent } from './components/municipios/frm-municipio/frm-municipio.component';
+import { LtsMunicipioComponent } from './components/municipios/lts-municipio/lts-municipio.component';
+import { FrmPlatosComponent } from './components/platos/frm-platos/frm-platos.component';
+import { LtsPlatosComponent } from './components/platos/lts-platos/lts-platos.component';
+import { LoginComponent } from './components/usuario/login/login.component';
+import { RegistroComponent } from './components/usuario/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,13 @@ import { FormsModule } from '@angular/forms';
     MunicipiosComponent,
     MenuComponent,
     CardSitiosComponent,
-    FrmSitiosComponent
+    FrmSitiosComponent,
+    FrmMunicipioComponent,
+    LtsMunicipioComponent,
+    FrmPlatosComponent,
+    LtsPlatosComponent,
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
